@@ -154,3 +154,14 @@ turtle.done()
 
 Berikut adalah hasil tampilan dari program grafika komputer 2D bertema rumah sederhana yang dibuat menggunakan Python (Thonny) dengan algoritma grafika manual.
 
+<p align="center">
+  <img src="WWW.png" alt="Hasil Program Rumah 2D" width="500">
+</p>
+
+
+
+
+
+
+
+
