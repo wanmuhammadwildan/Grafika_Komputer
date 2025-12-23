@@ -139,4 +139,4 @@ Berikut adalah hasil tampilan dari program grafika komputer 2D yang telah dijala
 
 ✅ Kesimpulan
 
-Program ini berhasil menerapkan algoritma grafika komputer manual berupa algoritma DDA, Midpoint Circle, Poligon, serta konsep transformasi geometri 2D untuk membentuk objek rumah 2D yang utuh.
+Program ini  menerapkan algoritma grafika komputer manual berupa algoritma DDA, Midpoint Circle, Poligon, serta konsep transformasi geometri 2D untuk membentuk objek rumah 2D.
