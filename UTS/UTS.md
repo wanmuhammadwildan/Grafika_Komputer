@@ -30,17 +30,16 @@ Transformasi 2D diterapkan melalui pengaturan koordinat objek agar atap menyatu 
 import turtle
 import math
 
-# =====================================================
+
 # PROGRAM GRAFIKA KOMPUTER 2D – RUMAH SEDERHANA
-#
 # MATERI YANG DITERAPKAN:
 # 1. Algoritma Garis DDA
 # 2. Algoritma Lingkaran Midpoint
 # 3. Algoritma Poligon
 # 4. Transformasi Geometris 2D
-# =====================================================
 
-# ===================== SETUP LAYAR =====================
+
+#  SETUP LAYAR
 screen = turtle.Screen()
 screen.title("Rumah 2D - wan ")
 
@@ -49,7 +48,7 @@ t.speed(0)
 t.hideturtle()
 turtle.bgcolor("white")
 
-# ===================== GARIS DDA =====================
+# GARIS DDA 
 def draw_line_DDA(x1, y1, x2, y2):
     dx = x2 - x1
     dy = y2 - y1
@@ -65,7 +64,7 @@ def draw_line_DDA(x1, y1, x2, y2):
         y += y_inc
         t.goto(round(x), round(y))
 
-# ===================== MIDPOINT CIRCLE =====================
+# MIDPOINT CIRCLE 
 def draw_circle_midpoint(cx, cy, r):
     x = 0
     y = r
@@ -93,7 +92,7 @@ def draw_circle_midpoint(cx, cy, r):
             p += 2*(x - y) + 1
         plot(x, y)
 
-# ===================== POLIGON =====================
+#  POLIGON 
 def draw_polygon(points):
     for i in range(len(points)):
         draw_line_DDA(
@@ -102,7 +101,7 @@ def draw_polygon(points):
             points[(i+1)%len(points)][1]
         )
 
-# ===================== GAMBAR RUMAH =====================
+#  GAMBAR RUMAH 
 draw_line_DDA(-180, -80, 180, -80)
 
 draw_line_DDA(-120, -80, 120, -80)
