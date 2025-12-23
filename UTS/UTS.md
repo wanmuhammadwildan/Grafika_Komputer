@@ -1,3 +1,32 @@
+🏠 Proyek Grafika Komputer 2D – Rumah Sederhana
+📌 Deskripsi
+
+Proyek ini merupakan implementasi grafika komputer 2D menggunakan Python (Thonny) dengan tema Rumah Sederhana.
+Seluruh objek digambar menggunakan algoritma grafika manual, tanpa menggunakan fungsi gambar siap pakai.
+
+📚 Materi yang Diterapkan
+
+Program ini menerapkan 4 materi wajib Grafika Komputer, yaitu:
+
+Algoritma Gambar Garis (DDA)
+
+Algoritma Gambar Lingkaran (Midpoint Circle)
+
+Algoritma Gambar Poligon
+
+Transformasi Geometris 2D (konsep translasi & penyesuaian koordinat)
+
+🧠 Penjelasan Singkat
+
+Algoritma DDA digunakan untuk menggambar seluruh garis lurus seperti tanah, dinding, pintu, jendela kotak, dan cerobong.
+
+Algoritma Midpoint Circle digunakan untuk menggambar jendela berbentuk lingkaran.
+
+Algoritma Poligon digunakan untuk membentuk atap rumah.
+
+Transformasi 2D diterapkan melalui pengaturan koordinat objek agar atap menyatu dengan dinding tanpa celah.
+
+💻 Kode Program
 import turtle
 import math
 
@@ -8,7 +37,7 @@ import math
 # 1. Algoritma Garis DDA
 # 2. Algoritma Lingkaran Midpoint
 # 3. Algoritma Poligon
-# 4. Transformasi Geometris 2D (konsep translasi & penyesuaian koordinat)
+# 4. Transformasi Geometris 2D
 # =====================================================
 
 # ===================== SETUP LAYAR =====================
@@ -20,54 +49,34 @@ t.speed(0)
 t.hideturtle()
 turtle.bgcolor("white")
 
-# =====================================================
-# 1. ALGORITMA GAMBAR GARIS (DDA)
-# Digunakan untuk menggambar semua garis lurus:
-# - tanah
-# - dinding
-# - pintu
-# - jendela kotak
-# - cerobong
-# =====================================================
+# ===================== GARIS DDA =====================
 def draw_line_DDA(x1, y1, x2, y2):
     dx = x2 - x1
     dy = y2 - y1
-
-    # Menentukan jumlah langkah berdasarkan selisih terbesar
     steps = int(max(abs(dx), abs(dy)))
-
-    # Kenaikan nilai x dan y tiap langkah
     x_inc = dx / steps
     y_inc = dy / steps
-
     x, y = x1, y1
     t.penup()
     t.goto(round(x), round(y))
     t.pendown()
-
-    # Menggambar garis titik demi titik
     for _ in range(steps):
         x += x_inc
         y += y_inc
         t.goto(round(x), round(y))
 
-# =====================================================
-# 2. ALGORITMA GAMBAR LINGKARAN (MIDPOINT CIRCLE)
-# Digunakan untuk menggambar jendela bulat
-# Tanpa menggunakan fungsi circle() bawaan turtle
-# =====================================================
+# ===================== MIDPOINT CIRCLE =====================
 def draw_circle_midpoint(cx, cy, r):
     x = 0
     y = r
-    p = 1 - r  # parameter keputusan
+    p = 1 - r
 
-    # Menggambar 8 titik simetris lingkaran
     def plot(x, y):
         for px, py in [
-            (cx + x, cy + y), (cx - x, cy + y),
-            (cx + x, cy - y), (cx - x, cy - y),
-            (cx + y, cy + x), (cx - y, cy + x),
-            (cx + y, cy - x), (cx - y, cy - x)
+            (cx+x, cy+y), (cx-x, cy+y),
+            (cx+x, cy-y), (cx-x, cy-y),
+            (cx+y, cy+x), (cx-y, cy+x),
+            (cx+y, cy-x), (cx-y, cy-x)
         ]:
             t.penup()
             t.goto(px, py)
@@ -75,65 +84,43 @@ def draw_circle_midpoint(cx, cy, r):
             t.dot(3)
 
     plot(x, y)
-
-    # Perhitungan titik berikutnya
     while x < y:
         x += 1
         if p < 0:
-            p += 2 * x + 1
+            p += 2*x + 1
         else:
             y -= 1
-            p += 2 * (x - y) + 1
+            p += 2*(x - y) + 1
         plot(x, y)
 
-# =====================================================
-# 3. ALGORITMA GAMBAR POLIGON
-# Digunakan untuk menggambar atap rumah
-# Poligon dibentuk dari beberapa garis DDA
-# =====================================================
+# ===================== POLIGON =====================
 def draw_polygon(points):
     for i in range(len(points)):
         draw_line_DDA(
             points[i][0], points[i][1],
-            points[(i + 1) % len(points)][0],
-            points[(i + 1) % len(points)][1]
+            points[(i+1)%len(points)][0],
+            points[(i+1)%len(points)][1]
         )
 
-# =====================================================
-# GAMBAR RUMAH 2D
-# =====================================================
-
-# ---- TANAH (GARIS DDA) ----
+# ===================== GAMBAR RUMAH =====================
 draw_line_DDA(-180, -80, 180, -80)
 
-# ---- DINDING RUMAH (GARIS DDA) ----
 draw_line_DDA(-120, -80, 120, -80)
 draw_line_DDA(120, -80, 120, 60)
 draw_line_DDA(120, 60, -120, 60)
 draw_line_DDA(-120, 60, -120, -80)
 
-# ---- ATAP RUMAH (POLIGON) ----
-# Penerapan KONSEP TRANSFORMASI 2D:
-# Titik bawah atap disamakan dengan titik atas dinding (y = 60)
-# agar atap dan dinding menyatu tanpa celah
-atap = [
-    (-140, 60),   # kiri bawah
-    (0, 140),     # puncak atap
-    (140, 60)     # kanan bawah
-]
+atap = [(-140, 60), (0, 140), (140, 60)]
 draw_polygon(atap)
 
-# ---- CEROBONG (GARIS DDA) ----
 draw_line_DDA(-60, 60, -60, 110)
 draw_line_DDA(-40, 60, -40, 110)
 draw_line_DDA(-60, 110, -40, 110)
 
-# ---- PINTU (GARIS DDA) ----
 draw_line_DDA(-90, -80, -90, 10)
 draw_line_DDA(-40, -80, -40, 10)
 draw_line_DDA(-90, 10, -40, 10)
 
-# ---- JENDELA KOTAK (GARIS DDA) ----
 draw_line_DDA(20, -10, 90, -10)
 draw_line_DDA(90, -10, 90, 40)
 draw_line_DDA(90, 40, 20, 40)
@@ -141,10 +128,16 @@ draw_line_DDA(20, 40, 20, -10)
 draw_line_DDA(55, -10, 55, 40)
 draw_line_DDA(20, 15, 90, 15)
 
-# ---- JENDELA BULAT (MIDPOINT CIRCLE) ----
 draw_circle_midpoint(-10, 20, 10)
 
-# ===================== SELESAI =====================
 turtle.done()
-<img width="603" height="458" alt="Screenshot 2025-12-23 170430" src="https://github.com/user-attachments/assets/8f761820-679a-4c53-a7e9-663e9e00ebe9" />
 
+🖼️ Hasil Program
+
+Berikut adalah hasil tampilan dari program grafika komputer 2D yang telah dijalankan:
+
+<img width="603" height="458" alt="Screenshot 2025-12-23 170430" src="https://github.com/user-attachments/assets/42b7f9c1-7a28-4c21-bda1-47d14abe213b" />
+
+✅ Kesimpulan
+
+Program ini berhasil menerapkan algoritma grafika komputer manual berupa algoritma DDA, Midpoint Circle, Poligon, serta konsep transformasi geometri 2D untuk membentuk objek rumah 2D yang utuh.
