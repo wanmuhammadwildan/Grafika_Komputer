@@ -2,7 +2,7 @@
 📌 Deskripsi
 
 Proyek ini merupakan implementasi grafika komputer 2D menggunakan Python (Thonny) dengan tema Rumah Sederhana.
-Seluruh objek digambar menggunakan algoritma grafika manual, tanpa menggunakan fungsi gambar siap pakai.
+
 
 📚 Materi yang Diterapkan
 
