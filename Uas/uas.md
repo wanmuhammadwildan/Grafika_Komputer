@@ -45,5 +45,7 @@ Fungsi `hitung_normal(v1, v2, v3)` memastikan bodi kuning taksi memantulkan caha
 | **Klik Kiri + Geser Mouse** | Rotasi Kamera (Orbit) |
 | **Scroll Atas** | Zoom In (Mendekat) |
 | **Scroll Bawah** | Zoom Out ( menjauh) |
+| **W** | Maju ( Maju )|
+| **A** | Mundur ( Mundur) |
 
 ---
